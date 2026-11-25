@@ -19,8 +19,7 @@ window.PROJECTS=[
    "React",
    "TypeScript",
    "MySQL"
-  ],
-  "u": "https://github.com/mohamedadelrr/basma"
+  ]
  },
  {
   "n": "Robot APMS",
@@ -43,7 +42,7 @@ window.PROJECTS=[
   "u": ""
  },
  {
-  "n": "Lecture Meta",
+  "n": "LectureMate",
   "c": "Mobile",
   "d": "Learning app for Borg Al-Arab Technological University. Students pass a quiz before moving to the next lecture; instructors upload content and track progress.",
   "t": [
