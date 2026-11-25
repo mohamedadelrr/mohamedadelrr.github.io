@@ -1,0 +1,13 @@
+.curtain .cw{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font:400 clamp(2.6rem,9vw,8rem)/1 "Instrument Serif",serif;font-style:italic;color:var(--paper);text-align:center;white-space:nowrap}
+.curtain .cw b{color:var(--red);font-weight:400}
+.curtain .cb{position:absolute;left:var(--pad);right:var(--pad);bottom:calc(var(--pad) + 34px);height:2px;background:rgba(233,229,220,.18)}
+.curtain .cb i{display:block;height:100%;width:0;background:var(--red)}
+#sw{position:fixed;inset:0;width:100%;height:100%;z-index:96;pointer-events:none;display:none}
+.fidx{position:absolute;right:calc(var(--pad) - 6px);top:50%;transform:translateY(-50%);z-index:3;display:flex;flex-direction:column;gap:6px}
+.fidx button{width:26px;height:14px;display:flex;align-items:center;justify-content:flex-end;background:none;border:0;padding:0;cursor:pointer}
+.fidx button i{display:block;height:2px;width:8px;background:var(--paper);opacity:.35;transition:width .3s,opacity .3s,background .3s}
+.fidx button:hover i{opacity:.9;width:16px}
+.fidx button.on i{width:24px;background:var(--red);opacity:1}
+@media(max-width:700px){.fidx{display:none}}
+.mg{will-change:transform;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.mg.pull{transition:transform .12s linear}
