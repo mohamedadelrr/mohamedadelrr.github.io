@@ -1,0 +1,19 @@
+.gl{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;opacity:0;transition:opacity 1.6s ease 1s}
+.go .gl{opacity:1}
+.pv{position:fixed;left:0;top:0;z-index:80;width:300px;height:370px;pointer-events:none;border-radius:6px;overflow:hidden;opacity:0;transform:translate(-999px,-999px) scale(.7) rotate(-4deg);transition:opacity .3s,scale .4s cubic-bezier(.2,.8,.2,1);background:var(--ink);color:var(--paper);padding:22px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 30px 60px -20px rgba(21,20,15,.45)}
+.pv.on{opacity:1}
+.pv.c1{background:var(--red);color:var(--ink)}.pv.c2{background:var(--paper);color:var(--ink);outline:1px solid var(--ink)}
+.pv .pn{font:800 7.5rem/.8 Archivo,sans-serif;letter-spacing:-.06em}
+.pv .pt{font:400 1.9rem/1 "Instrument Serif",serif;font-style:italic}
+.pv .pg{font:.66rem "JetBrains Mono",monospace;text-transform:uppercase;display:flex;flex-wrap:wrap;gap:6px}
+.pv .pg i{font-style:normal;border:1px solid currentColor;padding:3px 7px;border-radius:99px}
+.pv .pc{font:.66rem "JetBrains Mono",monospace;text-transform:uppercase;opacity:.7}
+.rows:hover .row:not(:hover){opacity:.35}.row{transition:opacity .35s}
+.wipe{position:fixed;inset:0;z-index:95;background:var(--red);transform:translateY(100%);pointer-events:none}
+.wipe.in{transition:transform .55s cubic-bezier(.76,0,.24,1);transform:translateY(0)}
+.wipe.out{transition:transform .6s cubic-bezier(.76,0,.24,1);transform:translateY(-100%)}
+.me{transform-origin:50% 100%;will-change:transform}
+.ring{position:fixed;left:0;top:0;width:44px;height:44px;margin:-22px 0 0 -22px;border:1px solid var(--ink);border-radius:50%;z-index:89;pointer-events:none;mix-blend-mode:difference;opacity:.0}
+@media(hover:hover){.ring{opacity:.5}}
+@media(hover:none) and (pointer:coarse){.pv,.ring{display:none}}
+.shot .wipe{display:none}
