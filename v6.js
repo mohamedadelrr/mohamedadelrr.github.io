@@ -8,11 +8,11 @@ const cam=new T.PerspectiveCamera(55,1,.1,80);
 const N=P.length,GAP=7.5;
 const pos=i=>new T.Vector3(Math.sin(i*1.9)*3.1,Math.cos(i*2.4)*1.5,-i*GAP);
 const cols=[['#e9e5dc','#15140f'],['#e4401b','#15140f'],['#1d1c16','#e9e5dc']];
-function tex(p,i){const c=document.createElement('canvas');c.width=600;c.height=760;const x=c.getContext('2d');const [bg,fg]=cols[i%3];
+function tex(p,i){const c=document.createElement('canvas');c.width=600;c.height=760;const x=c.getContext('2d');if(window.AR)x.letterSpacing='0px';const [bg,fg]=cols[i%3];
  x.fillStyle=bg;x.fillRect(0,0,600,760);x.fillStyle=fg;
- x.globalAlpha=.7;x.font='500 26px "JetBrains Mono",monospace';x.fillText(p.c.toUpperCase(),40,70);x.globalAlpha=1;
+ x.globalAlpha=.7;x.font=window.AR?'600 30px Cairo,sans-serif':'500 26px "JetBrains Mono",monospace';x.fillText(window.AR?p.c:p.c.toUpperCase(),40,70);x.globalAlpha=1;
  x.font='800 330px Archivo,sans-serif';x.fillText(String(i+1).padStart(2,'0'),24,430);
- x.font='italic 400 64px "Instrument Serif",serif';
+ x.font=window.AR?'700 54px Cairo,sans-serif':'italic 400 64px "Instrument Serif",serif';
  const words=p.n.split(' ');let line='',y=540;for(const w of words){const t=line?line+' '+w:w;if(x.measureText(t).width>520&&line){x.fillText(line,40,y);y+=64;line=w}else line=t}x.fillText(line,40,y);
  x.font='500 22px "JetBrains Mono",monospace';x.globalAlpha=.7;x.fillText(p.t.slice(0,3).join('  /  ').toUpperCase(),40,720);
  x.strokeStyle=fg;x.globalAlpha=.9;x.lineWidth=3;x.strokeRect(10,10,580,740);
@@ -20,7 +20,7 @@ function tex(p,i){const c=document.createElement('canvas');c.width=600;c.height=
 const cards=[];const grp=new T.Group();scene.add(grp);
 function build(){P.forEach((p,i)=>{const m=new T.Mesh(new T.PlaneGeometry(3.3,4.18),new T.MeshBasicMaterial({map:tex(p,i),fog:true,side:T.DoubleSide}));
  const q=pos(i);m.position.copy(q);m.rotation.y=Math.sin(i*1.3)*.35;m.rotation.z=Math.sin(i*2.1)*.05;m.userData.b=m.rotation.clone();grp.add(m);cards.push(m)})}
-(document.fonts&&document.fonts.load?Promise.all([document.fonts.load('800 40px Archivo'),document.fonts.load('italic 400 40px "Instrument Serif"'),document.fonts.load('500 20px "JetBrains Mono"')]).catch(()=>{}):Promise.resolve()).then(()=>{build();ready=1;upd(true)});
+(document.fonts&&document.fonts.load?Promise.all([document.fonts.load('800 40px Archivo'),document.fonts.load('italic 400 40px "Instrument Serif"'),document.fonts.load('500 20px "JetBrains Mono"')].concat(window.AR?[document.fonts.load('600 30px Cairo'),document.fonts.load('700 54px Cairo')]:[])).catch(()=>{}):Promise.resolve()).then(()=>{build();ready=1;upd(true)});
 let ready=0;
 /* path line + particles */
 const pts=P.map((_,i)=>pos(i).clone());const curve=new T.CatmullRomCurve3(pts);
@@ -39,7 +39,7 @@ function scrollP(){const r=sec.getBoundingClientRect();const h=sec.offsetHeight-
 addEventListener('pointermove',e=>{tpx=e.clientX/innerWidth-.5;tpy=e.clientY/innerHeight-.5});
 const cap=$('.fly-cap');
 function upd(force){const i=Math.max(0,Math.min(N-1,Math.round(fe)));if(i===cur&&!force)return;cur=i;const p=P[i];
- const set=()=>{$('#fc-cat').textContent=p.c;$('#fc-name').textContent=p.n;$('#fc-d').textContent=p.d;$('#fc-tg').innerHTML=p.t.map(t=>'<span>'+t+'</span>').join('');const u=$('#fc-u');if(p.u){u.href=p.u;u.textContent='Source on GitHub \u2192';u.style.display=''}else u.style.display='none';$('#fly-n').textContent=String(i+1).padStart(2,'0')+' / '+N;cap.classList.remove('sw')};
+ const set=()=>{$('#fc-cat').textContent=p.c;$('#fc-name').textContent=p.n;$('#fc-d').textContent=p.d;$('#fc-tg').innerHTML=p.t.map(t=>'<span>'+t+'</span>').join('');const u=$('#fc-u');if(p.u){u.href=p.u;u.textContent=TX.src;u.style.display=''}else u.style.display='none';$('#fly-n').textContent=String(i+1).padStart(2,'0')+' / '+N;cap.classList.remove('sw')};
  if(force||Q.has('shot'))set();else{cap.classList.add('sw');setTimeout(set,220)}}
 let vis=true;new IntersectionObserver(e=>vis=e[0].isIntersecting).observe(sec);
 const look=new T.Vector3();

@@ -6,7 +6,7 @@ const fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
 const cur=$('#curtain');
 if(cur&&!SHOT){const w=document.createElement('div');w.className='cw';cur.appendChild(w);
  const bar=document.createElement('div');bar.className='cb';bar.innerHTML='<i></i>';cur.appendChild(bar);
- const words=['Web<b>.</b>','Mobile<b>.</b>','Hardware<b>.</b>','Systems<b>.</b>','Mohamed<b>.</b>'];let k=0;w.innerHTML=words[0];
+ const words=TX.loader;let k=0;w.innerHTML=words[0];
  const tm=setInterval(()=>{if(++k>=words.length){clearInterval(tm);return}w.innerHTML=words[k]},420);
  const c=$('#count');const bi=bar.firstChild;const mo=new MutationObserver(()=>{bi.style.width=(parseInt(c.textContent)||0)+'%'});mo.observe(c,{childList:true,characterData:true,subtree:true});}
 /* ---------- smooth scroll (wheel, desktop) ---------- */

@@ -1,0 +1,11 @@
+html[lang=ar] body,html[lang=ar] *{font-family:Cairo,"Segoe UI",Tahoma,sans-serif!important;letter-spacing:0!important;text-transform:none!important}
+html[lang=ar] .serif,html[lang=ar] em{font-style:normal;font-weight:700}
+html[lang=ar] .name{font-weight:900}
+html[lang=ar] .hero,html[lang=ar] .fly-stage,html[lang=ar] .bar{direction:ltr}
+html[lang=ar] .name{font-size:clamp(3.4rem,11.5vw,11rem);line-height:1.05}
+html[lang=ar] .name .ln:nth-child(2){padding-left:clamp(40px,10vw,170px)}
+html[lang=ar] .name,html[lang=ar] .intro,html[lang=ar] .fly-cap,html[lang=ar] .hero-foot{text-align:left;direction:rtl;unicode-bidi:plaintext}
+html[lang=ar] .name .ln{display:block;direction:ltr;text-align:left}
+html[lang=ar] .hero-foot,html[lang=ar] .fly-cap{direction:ltr}
+html[lang=ar] .intro .ln,html[lang=ar] .fly-cap p,html[lang=ar] .fly-cap h3{direction:rtl;text-align:left;display:block}
+@media(max-width:860px){html[lang=ar] .name{font-size:19vw}html[lang=ar] .name .ln:nth-child(2){padding-left:8vw}}
