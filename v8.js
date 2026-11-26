@@ -27,3 +27,35 @@ function step(d){ix=(ix+d+set.length)%set.length;show()}
 document.addEventListener('click',function(e){var t=e.target;if(t.matches&&t.matches('img[data-lb]'))return open(t);if(t===lb||t.classList.contains('lb-x'))close();else if(t.classList.contains('lb-p'))step(window.AR?1:-1);else if(t.classList.contains('lb-n'))step(window.AR?-1:1)});
 addEventListener('keydown',function(e){if(!lb.classList.contains('on'))return;if(e.key==='Escape')close();if(e.key==='ArrowRight')step(window.AR?-1:1);if(e.key==='ArrowLeft')step(window.AR?1:-1)});
 })();
+/* gallery autoplay: slow drift, ping-pong, pauses on hover/touch/drag/lightbox/offscreen */
+(function(){
+if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+var strips=[].slice.call(document.querySelectorAll('.gstrip'));if(!strips.length)return;
+var SPEED=38,RESUME=2500,root=document.documentElement;
+strips.forEach(function(st){
+var sgn=getComputedStyle(st).direction==='rtl'?-1:1,t=0,dir=1,last=0,hold=0,vis=false,over=false,touch=false;
+function max(){return st.scrollWidth-st.clientWidth}
+function pause(ms){hold=Math.max(hold,performance.now()+(ms||RESUME))}
+new IntersectionObserver(function(es){vis=es[0].isIntersecting},{threshold:.1}).observe(st);
+st.addEventListener('mouseenter',function(){over=true});
+st.addEventListener('mouseleave',function(){over=false;pause(900)});
+st.addEventListener('touchstart',function(){touch=true;pause(1e9)},{passive:true});
+['touchend','touchcancel'].forEach(function(n){st.addEventListener(n,function(){touch=false;pause(RESUME)},{passive:true})});
+st.addEventListener('wheel',function(){pause()},{passive:true});
+st.addEventListener('pointerdown',function(){pause()});
+st.addEventListener('focusin',function(){pause(6000)});
+st.parentNode.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('.garr'))pause(5000)});
+function frame(n){
+var dt=Math.min(.05,(n-last)/1000);last=n;
+if(vis&&!over&&!touch&&n>=hold&&!root.classList.contains('lbo')&&!document.hidden&&max()>10){
+ var cur=Math.abs(st.scrollLeft);
+ if(Math.abs(cur-t)>3)t=cur; /* user moved it: continue from there */
+ st.style.scrollSnapType='none';
+ t+=dir*SPEED*dt;
+ if(t>=max()){t=max();dir=-1}else if(t<=0){t=0;dir=1}
+ st.scrollLeft=sgn*t;
+}else if(n<hold||over||touch){st.style.scrollSnapType='';t=Math.abs(st.scrollLeft)}
+requestAnimationFrame(frame)}
+requestAnimationFrame(function(n){last=n;frame(n)});
+});
+})();
