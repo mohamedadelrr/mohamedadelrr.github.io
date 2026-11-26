@@ -72,3 +72,9 @@ html[lang=ar] .gfr figcaption{font-family:Cairo,sans-serif;font-size:13px}
 .row-b .pim{grid-column:2;min-width:0;max-width:100%}
 .row-b>div{min-width:0}
 @media(min-width:861px){.row-b .pim{grid-column:2 / 4}}
+
+/* about photo: reveal without clip-path (clip hid it from IntersectionObserver on phones) */
+.ab-ph{clip-path:none;opacity:0;transform:translateY(26px);transition:opacity 1s ease,transform 1.1s cubic-bezier(.2,.8,.2,1)}
+.ab-ph.in{clip-path:none;opacity:1;transform:none}
+/* about portrait background: charcoal to red gradient */
+.ab-bg{background:radial-gradient(ellipse at 50% 38%,#e4401b 0%,transparent 64%),linear-gradient(155deg,#34312c,#1a1916 60%,#5a2414)}
