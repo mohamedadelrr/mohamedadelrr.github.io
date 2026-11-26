@@ -69,3 +69,6 @@ html[lang=ar] .grow-h p{font-family:Cairo,sans-serif;font-size:14px;opacity:.7}
 html[lang=ar] .grow-h h3{font-family:Cairo,sans-serif;font-weight:900}
 html[lang=ar] .gfr figcaption{font-family:Cairo,sans-serif;font-size:13px}
 .lb img{animation:none}
+.row-b .pim{grid-column:2;min-width:0;max-width:100%}
+.row-b>div{min-width:0}
+@media(min-width:861px){.row-b .pim{grid-column:2 / 4}}
