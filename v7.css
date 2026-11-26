@@ -78,3 +78,7 @@ html[lang=ar] .gfr figcaption{font-family:Cairo,sans-serif;font-size:13px}
 .ab-ph.in{clip-path:none;opacity:1;transform:none}
 /* about portrait background: charcoal to red gradient */
 .ab-bg{background:radial-gradient(ellipse at 50% 38%,#e4401b 0%,transparent 64%),linear-gradient(155deg,#34312c,#1a1916 60%,#5a2414)}
+
+/* contact: WhatsApp number */
+.mail.wa{display:block;width:fit-content;margin:-10px 0 40px;font-size:clamp(1.1rem,3.2vw,2.4rem);word-break:normal}
+html[lang=ar] .mail.wa{margin-inline-start:0;text-align:start;unicode-bidi:isolate}
