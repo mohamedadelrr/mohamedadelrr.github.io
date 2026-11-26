@@ -72,11 +72,12 @@ window.PROJECTS=[
   "u": ""
  },
  {
-  "n": "Experimental Schools Result Portal",
+  "n": "East Educational Administration Results System",
   "c": "Web",
-  "d": "Online portal to manage and publish exam results for experimental schools across Alexandria. Cuts paperwork and gives parents and students secure access.",
+  "d": "Results system for the East Educational Administration, Alexandria. Schools publish exam results and students look theirs up by national ID. Includes school control, administration statistics and results printing, for experimental schools across Alexandria.",
   "t": [
    "Portal",
+   "Results",
    "Alexandria"
   ],
   "u": ""
@@ -156,6 +157,17 @@ window.PROJECTS=[
   "t": [
    "Mobile",
    "Requests"
+  ],
+  "u": ""
+ },
+ {
+  "n": "School Uniform Management System",
+  "c": "Web",
+  "d": "Web app that runs school uniform sales: pick items and sizes, review the order, then buy or reserve. Prints receipts, keeps a transactions log, shows revenue and sales reports, and saves all data to a local Excel file.",
+  "t": [
+   "JavaScript",
+   "Excel",
+   "Reports"
   ],
   "u": ""
  }
